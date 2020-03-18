@@ -3,4 +3,6 @@ description: 'Run Robot Framework tests'
 runs:
   using: 'docker'
   image: docker://ppodgorsek/robot-framework:latest
+  env:
+    ROOT_PATH: ${GITHUB_WORKSPACE}
 
