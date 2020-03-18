@@ -14,7 +14,7 @@ BROWSER, ROBOT_TESTS_DIR & ROBOT_REPORTS_DIR have to be defined.
       - name: Checkout
         uses: actions/checkout@v2
       - name: Robot Framework
-        uses: joonvena/robotframework-docker-action@v1
+        uses: joonvena/robotframework-docker-action@v0.1
         env:
           BROWSER: chrome
           ROBOT_TESTS_DIR: ${{ github.workspace }}/robot_tests
