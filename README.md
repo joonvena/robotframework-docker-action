@@ -13,8 +13,8 @@ BROWSER, ROBOT_TESTS_DIR & ROBOT_REPORTS_DIR have to be defined.
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Robot Framework step
-        uses: actions/robotframework-docker-action@v1
+      - name: Robot Framework
+        uses: joonvena/robotframework-docker-action@v1
         env:
           BROWSER: chrome
           ROBOT_TESTS_DIR: ./test
