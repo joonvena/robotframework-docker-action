@@ -2,5 +2,5 @@ name: 'Robot Framework'
 description: 'Run Robot Framework tests'
 runs:
   using: 'docker'
-  image: ppodgorsek/robot-framework:latest
+  image: docker://ppodgorsek/robot-framework:latest
 
