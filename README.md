@@ -6,7 +6,7 @@ This action runs Robot Framework tests using [ppodgorsek](https://github.com/ppo
 
 BROWSER, ROBOT_TESTS_DIR & ROBOT_REPORTS_DIR have to be defined.
 
-jobs:
+```jobs:
   robot_test:
     runs-on: ubuntu-latest
     name: Run Robot Framework Tests
@@ -19,3 +19,4 @@ jobs:
           BROWSER: chrome
           ROBOT_TESTS_DIR: ./test
           ROBOT_REPORTS_DIR: ./reports
+```
