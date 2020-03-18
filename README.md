@@ -17,6 +17,6 @@ BROWSER, ROBOT_TESTS_DIR & ROBOT_REPORTS_DIR have to be defined.
         uses: joonvena/robotframework-docker-action@v1
         env:
           BROWSER: chrome
-          ROBOT_TESTS_DIR: ./test
-          ROBOT_REPORTS_DIR: ./reports
+          ROBOT_TESTS_DIR: ${{ github.workspace }}/robot_tests
+          ROBOT_REPORTS_DIR: ${{ github.workspace }}/reports
 ```
