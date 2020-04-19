@@ -32,3 +32,5 @@ Defines path where results are stored. If directory doesn`t exists its created a
 
 `BROWSER`
 You can use either chrome or firefox as argument
+
+If you want to execute tests in parallel use `ROBOT_THREADS` environment variable eg. `ROBOT_THREADS: 2`.
