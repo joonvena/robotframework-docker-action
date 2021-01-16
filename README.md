@@ -1,6 +1,6 @@
 # Robot Framework Docker Action
 
-This action runs Robot Framework tests using [ppodgorsek](https://github.com/ppodgorsek/docker-robot-framework) image.
+This action runs Robot Framework tests using [ppodgorsek](https://github.com/ppodgorsek/docker-robot-framework/releases/tag/3.7.0) image v 3.7.0.
 
 ## Example usage
 
