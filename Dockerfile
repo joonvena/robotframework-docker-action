@@ -1,7 +1,7 @@
 FROM python:3.9.0-alpine3.12
 
-MAINTAINER Paul Podgorsek <ppodgorsek@users.noreply.github.com>
-LABEL description Robot Framework in Docker.
+MAINTAINER Carlos Barboza <carlos.barboza@logcomex.com>
+LABEL description Robot Framework in Docker with Percy.
 
 # Set the reports directory environment variable
 ENV ROBOT_REPORTS_DIR /opt/robotframework/reports
@@ -35,22 +35,26 @@ ENV FTP_LIBRARY_VERSION 1.9
 ENV GECKO_DRIVER_VERSION v0.26.0
 ENV IMAP_LIBRARY_VERSION 0.3.8
 ENV PABOT_VERSION 1.10.0
-ENV REQUESTS_VERSION 0.7.2
+ENV REQUESTS_VERSION 0.8.0
 ENV ROBOT_FRAMEWORK_VERSION 3.2.2
 ENV SELENIUM_LIBRARY_VERSION 4.5.0
 ENV SSH_LIBRARY_VERSION 3.5.1
 ENV XVFB_VERSION 1.20
+ENV SSH_LIBRARY_VERSION 3.5.1
+ENV PERCY_VERSION 2.0.2
 
 # Prepare binaries to be executed
 COPY bin/chromedriver.sh /opt/robotframework/bin/chromedriver
 COPY bin/chromium-browser.sh /opt/robotframework/bin/chromium-browser
 COPY bin/run-tests-in-virtual-screen.sh /opt/robotframework/bin/
-
+#Install git
+RUN apk --no-cache add git
 # Install system dependencies
 RUN apk update \
   && apk --no-cache upgrade \
   && apk --no-cache --virtual .build-deps add \
     gcc \
+    g++ \
     libffi-dev \
     linux-headers \
     make \
@@ -63,10 +67,13 @@ RUN apk update \
     "chromium-chromedriver~$CHROMIUM_VERSION" \
     "firefox-esr~$FIREFOX_VERSION" \
     xauth \
+    tzdata \
     "xvfb-run~$XVFB_VERSION" \
   && mv /usr/lib/chromium/chrome /usr/lib/chromium/chrome-original \
   && ln -sfv /opt/robotframework/bin/chromium-browser /usr/lib/chromium/chrome \
 # FIXME: above is a workaround, as the path is ignored
+
+
 
 # Install Robot Framework and Selenium Library
   && pip3 install \
@@ -80,12 +87,10 @@ RUN apk update \
     robotframework-requests==$REQUESTS_VERSION \
     robotframework-seleniumlibrary==$SELENIUM_LIBRARY_VERSION \
     robotframework-sshlibrary==$SSH_LIBRARY_VERSION \
+    percy==$PERCY_VERSION \
     PyYAML \
-    robotframework-selenium2library==1.7.3 \
-    percy \
-    robot-framework-percy \
-    robotframework-screencaplibrary \
-    
+    git+https://github.com/carlosnizolli/robot-framework-percy.git \
+
 # Download the glibc package for Alpine Linux from its GitHub repository
   && wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub \
     && wget -q "https://github.com/sgerrand/alpine-pkg-glibc/releases/download/$ALPINE_GLIBC/glibc-$ALPINE_GLIBC.apk" \
@@ -103,6 +108,7 @@ RUN apk update \
     && mv geckodriver /opt/robotframework/drivers/geckodriver \
     && rm geckodriver-$GECKO_DRIVER_VERSION-linux64.tar.gz \
 
+# Clean up buildtime dependencies
   && apk del --no-cache --update-cache .build-deps
 
 # Create the default report and work folders with the default user to avoid runtime issues
