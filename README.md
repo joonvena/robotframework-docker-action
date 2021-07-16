@@ -4,7 +4,7 @@ This action runs Robot Framework tests using [ppodgorsek](https://github.com/ppo
 
 ## Example usage
 
-BROWSER, ROBOT_TESTS_DIR & ROBOT_REPORTS_DIR have to be defined.
+Run with chrome:
 
 ```jobs:
   robot_test:
@@ -14,23 +14,34 @@ BROWSER, ROBOT_TESTS_DIR & ROBOT_REPORTS_DIR have to be defined.
       - name: Checkout
         uses: actions/checkout@v2
       - name: Robot Framework
-        uses: joonvena/robotframework-docker-action@v0.1
-        env:
-          BROWSER: chrome
-          ROBOT_TESTS_DIR: ${{ github.workspace }}/robot_tests
-          ROBOT_REPORTS_DIR: ${{ github.workspace }}/reports
+        uses: joonvena/robotframework-docker-action@v1.0
 ```
 
-`${{ github.workspace }}`
-This is github`s own environment variable that resolves to workspace directory that contains the repository files.
+Run with firefox and in parallel:
 
-`ROBOT_TEST_DIR`
-Defines path where the tests are located
+```jobs:
+  robot_test:
+    runs-on: ubuntu-latest
+    name: Run Robot Framework Tests
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Robot Framework
+        uses: joonvena/robotframework-docker-action@v1.0
+        with:
+          browser: 'firefox'
+          robot_threads: 2
+```
 
-`ROBOT_REPORTS_DIR`
-Defines path where results are stored. If directory doesn`t exists its created automatically. 
+Available configurations in with block:
 
-`BROWSER`
-You can use either chrome or firefox as argument
-
-If you want to execute tests in parallel use `ROBOT_THREADS` environment variable eg. `ROBOT_THREADS: 2`.
+| Name                     | Default       | Description                                            |
+| ------------------------ | ------------- | ------------------------------------------------------ |
+| allowed_shared_memory    | '1g'          | How much container can use shared memory               |
+| browser                  | 'chrome'      | Available options chrome / firefox                     |
+| robot_threads            | 1             | Change this > 1 if you want to run tests in parallel   |
+| pabot_options            | ''            | These are only used if robot_threads > 1               |
+| robot_options            | ''            | Pass extra settings for robot command                  |
+| screen_color_depth       | 24            | Color depth of the virtual screen                      |
+| screen_height            | 1080          | Height of the virtual screen                           |
+| screen_width             | 1920          | Width of the virtual screen                            |
