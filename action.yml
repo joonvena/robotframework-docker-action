@@ -1,6 +1,49 @@
 name: 'Robot Framework'
 description: 'Run Robot Framework tests'
+inputs:
+  allowed_shared_memory:
+    description: 'Shared memory that Docker container is allowed to use'
+    required: true
+    default: '1g'
+  browser:
+    description: 'Browser to use'
+    required: true
+    default: 'chrome'
+  robot_threads:
+    description: 'Execute tests in parallel'
+    required: true
+    default: 1
+  pabot_options:
+    description: 'Extra settings for parallel execution. https://github.com/mkorpela/pabot#command-line-options'
+    required: true
+    default: ''
+  robot_options:
+    description: 'Extra options for robot command'
+    required: true
+    default: ''
+  screen_color_depth:
+    description: 'Color depth of the virtual screen'
+    required: true
+    default: 24
+  screen_height:
+    description: 'Height of the virtual screen'
+    required: true
+    default: 1080
+  screen_width:
+    description: 'Width of the virtual screen'
+    required: true
+    default: 1920
 runs:
-  using: 'docker'
-  image: docker://ppodgorsek/robot-framework:latest
-
+  using: 'composite'
+  steps:
+    - shell: bash
+      run: ${{ github.action_path }}/test.sh
+      env:
+        ALLOWED_SHARED_MEMORY: ${{ inputs.allowed_shared_memory }}
+        BROWSER: ${{ inputs.browser }}
+        ROBOT_THREADS: ${{ inputs.robot_threads }}
+        PABOT_OPTIONS: ${{ inputs.pabot_options }}
+        ROBOT_OPTIONS: ${{ inputs.robot_options }}
+        SCREEN_COLOR_DEPTH: ${{ inputs.screen_color_depth }}
+        SCREEN_HEIGHT: ${{ inputs.screen_height }}
+        SCREEN_WIDTH: ${{ inputs.screen_width }}
