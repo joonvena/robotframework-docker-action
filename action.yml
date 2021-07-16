@@ -33,6 +33,15 @@ inputs:
     description: 'Width of the virtual screen'
     required: true
     default: 1920
+  robot_tests_dir:
+    description: 'Directory where Robot tests are located in the repository'
+    required: true
+    default: 'robot_tests'
+  robot_reports_dir:
+    description: 'Where will the report from test be saved'
+    required: true
+    default: 'reports'
+
 runs:
   using: 'composite'
   steps:
@@ -47,3 +56,5 @@ runs:
         SCREEN_COLOR_DEPTH: ${{ inputs.screen_color_depth }}
         SCREEN_HEIGHT: ${{ inputs.screen_height }}
         SCREEN_WIDTH: ${{ inputs.screen_width }}
+        ROBOT_TESTS_DIR: ${{ inputs.robot_tests_dir }}
+        ROBOT_REPORTS_DIR: ${{ inputs.robot_reports_dir }}
