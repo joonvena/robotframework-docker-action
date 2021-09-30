@@ -45,3 +45,5 @@ Available configurations in with block:
 | screen_color_depth       | 24            | Color depth of the virtual screen                      |
 | screen_height            | 1080          | Height of the virtual screen                           |
 | screen_width             | 1920          | Width of the virtual screen                            |
+| robot_tests_dir          | 'robot_tests' | Location of tests inside repository                    |
+| robot_reports_dir        | 'reports'     | Location of report output from test execution          |
