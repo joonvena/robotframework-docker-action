@@ -9,6 +9,6 @@ docker run --shm-size=$ALLOWED_SHARED_MEMORY \
   -e PABOT_OPTIONS="$PABOT_OPTIONS" \
   -e ROBOT_OPTIONS="$ROBOT_OPTIONS" \
   -v $REPORTS_DIR:/opt/robotframework/reports:Z \
-  -v $TESTS_DIR:/opt/robotframework/tests:Z \
+  -v $TESTS_DIR:/opt/robotframework:Z \
   --user $(id -u):$(id -g) \
   ppodgorsek/robot-framework:latest
