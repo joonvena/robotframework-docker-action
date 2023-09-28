@@ -50,4 +50,5 @@ Available configurations in with block:
 | screen_width             | 1920                                | Width of the virtual screen                          |
 | robot_tests_dir          | 'robot_tests'                       | Location of tests inside repository                  |
 | robot_reports_dir        | 'reports'                           | Location of report output from test execution        |
+| robot_resources_dir      | 'resources'                         | Location of resources inside repository              |
 | robot_runner_image       | 'ppodgorsek/robot-framework:latest' | Docker image which will be used to execute the tests |
