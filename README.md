@@ -1,3 +1,6 @@
+> **Note**
+> This repo is forked from [joonvena/robotframework-docker-action](https://github.com/joonvena/robotframework-docker-action)
+
 # Robot Framework Docker Action
 
 This action runs Robot Framework tests using [ppodgorsek](https://github.com/ppodgorsek/docker-robot-framework) image.
