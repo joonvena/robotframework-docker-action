@@ -17,7 +17,7 @@ Run with chrome:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Robot Framework
-        uses: joonvena/robotframework-docker-action@v1.0
+        uses: felipeholek/robotframework-docker-action@master
 ```
 
 Run with firefox and in parallel:
@@ -30,7 +30,7 @@ Run with firefox and in parallel:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Robot Framework
-        uses: joonvena/robotframework-docker-action@v1.0
+        uses: felipeholek/robotframework-docker-action@master
         with:
           browser: 'firefox'
           robot_threads: 2
