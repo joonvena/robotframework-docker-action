@@ -37,6 +37,10 @@ inputs:
     description: 'Directory where Robot tests are located in the repository'
     required: true
     default: 'robot_tests'
+  robot_resources_dir:
+    description: 'Directory where Robot resources are located in the repository'
+    required: true
+    default: 'resources'
   robot_reports_dir:
     description: 'Where will the report from test be saved'
     required: true
@@ -63,4 +67,5 @@ runs:
         SCREEN_WIDTH: ${{ inputs.screen_width }}
         ROBOT_TESTS_DIR: ${{ inputs.robot_tests_dir }}
         ROBOT_REPORTS_DIR: ${{ inputs.robot_reports_dir }}
+        ROBOT_RESOURCES_DIR: ${{ inputs.robot_resources_dir }}
         ROBOT_RUNNER_IMAGE: ${{ inputs.robot_runner_image }}
