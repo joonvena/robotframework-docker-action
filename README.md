@@ -1,6 +1,3 @@
-> **Note**
-> This repo is forked from [joonvena/robotframework-docker-action](https://github.com/joonvena/robotframework-docker-action)
-
 # Robot Framework Docker Action
 
 This action runs Robot Framework tests using [ppodgorsek](https://github.com/ppodgorsek/docker-robot-framework) image.
@@ -17,7 +14,7 @@ Run with chrome:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Robot Framework
-        uses: felipeholek/robotframework-docker-action@master
+        uses: joonvena/robotframework-docker-action@v1.1
 ```
 
 Run with firefox and in parallel:
@@ -30,7 +27,7 @@ Run with firefox and in parallel:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Robot Framework
-        uses: felipeholek/robotframework-docker-action@master
+        uses: joonvena/robotframework-docker-action@v1.1
         with:
           browser: 'firefox'
           robot_threads: 2
