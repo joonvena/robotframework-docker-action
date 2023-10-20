@@ -1,4 +1,4 @@
-name: 'Robot Framework'
+name: 'Robot Framework Open'
 description: 'Run Robot Framework tests'
 inputs:
   allowed_shared_memory:
